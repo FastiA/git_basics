@@ -26,6 +26,7 @@ p = PERCENT / 100
 TOTAL = SUM * ((1 + p) ** (SET_PERIOD / FIXED_PERIOD))
 """
 
+
 # TODO: add lines to calculate yields for some common periods
 #       of time (e.g. 1 month, 1 year, 5 years, 10 years)
 # TODO: change the script to output the 1-year percent yield
@@ -40,18 +41,13 @@ USAGE = """USAGE: {script} initial_sum percent fixed_period set_period
 """
 USAGE = USAGE.strip()
 
-"""Dictionary of common periods and their corresponding number of years"""
-PERIODS = {
-    '1 year': 365,
-    '5 years': 1825,
-    '10 years': 3650
-}
 
 def deposit(initial_sum, percent, fixed_period, set_period):
     """Calculate deposit yield."""
     per = percent / 100
     growth = (1 + per) ** (set_period / fixed_period)
-    return initial_sum * growth 
+    return initial_sum * growth
+
 
 def main(args):
     """Gets called when run as a script."""
@@ -59,22 +55,18 @@ def main(args):
         exit(USAGE.format(script=args[0]))
 
     args = args[1:]
-    initial_sum, percent, set_period, fixed_period = map(float, args)
+    initial_sum, percent, fixed_period, set_period = map(float, args)
 
-    our_yield_value = deposit(initial_sum, percent, fixed_period, set_period)
-    print(f"Yield for entered period: {our_yield_value:.2f}\n")
+    # same as
+    # initial_sum = float(args[0])
+    # percent = float(args[1])
+    # ...
 
-    print(f"With deposit prolongation")
-    for period, year in PERIODS.items():   
-        custom_yield_value = deposit(initial_sum, percent, fixed_period, year)
-        print(f"Yield for {period}: {custom_yield_value:.2f}")
+    res = deposit(initial_sum, percent, fixed_period, set_period)
+    print(res)
 
 
 if __name__ == '__main__':
     import sys
 
-    for result in main(sys.argv):
-        pass
-
-
-
+    main(sys.argv)
