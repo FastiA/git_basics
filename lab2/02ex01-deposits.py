@@ -26,6 +26,7 @@ p = PERCENT / 100
 TOTAL = SUM * ((1 + p) ** (SET_PERIOD / FIXED_PERIOD))
 """
 
+
 # TODO: add lines to calculate yields for some common periods
 #       of time (e.g. 1 month, 1 year, 5 years, 10 years)
 # TODO: change the script to output the 1-year percent yield
@@ -46,12 +47,12 @@ PERIODS = {
     '5 years': 1825,
     '10 years': 3650
 }
+=======
 
 def deposit(initial_sum, percent, fixed_period, set_period):
     """Calculate deposit yield."""
     per = percent / 100
     growth = (1 + per) ** (set_period / fixed_period)
-    return initial_sum * growth 
 
 def main(args):
     """Gets called when run as a script."""
@@ -59,6 +60,7 @@ def main(args):
         exit(USAGE.format(script=args[0]))
 
     args = args[1:]
+
     initial_sum, percent, set_period, fixed_period = map(float, args)
 
     our_yield_value = deposit(initial_sum, percent, fixed_period, set_period)

@@ -27,6 +27,8 @@ D_UNAVAILABLE = "That's not on our menu.\nWe have {dishes}."
 
 
 def dialog(num_choice=DEF_CHOICE):
+    """User dialog logic."""
+    print(D_WELCOME)
 
     entry = input(D_CHOICE).strip()   # user entry
     words = entry.lower().split()
@@ -82,8 +84,10 @@ def main(args):
     script, *args = args
 
     """Gets called when run as a script."""
+
     show_menu()  # виведення меню
     print()  
+
     if len(args) > 1:
         exit('Too many arguments. ' + TIP.format(script=script))
     
@@ -95,6 +99,7 @@ def main(args):
 
     if len(args) < 1:
         print('Tip:', TIP.format(script=script))
+
 
 
 if __name__ == '__main__':
